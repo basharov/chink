@@ -6,20 +6,20 @@
     <title>Login</title>
 </head>
 <body>
-<div>
-    <% if (user) { %>
-        <h3><%= user._json.login || user._json.username %></h3>
-    <% } %>
-</div>
 
-<div>
-    <a href="/auth/github">Login with GitHub</a>
-    <a href="/logout">Logout from GitHub</a>
-</div>
-<div>
-    <a href="/auth/gitlab">Login with GitLab</a>
-    <a href="/logout">Logout from GitLab</a>
-</div>
+<% if (user) { %>
+    <h3><%= user._json.login || user._json.username %></h3>
+    <div>
+        <a href="/logout">Logout</a>
+    </div>
+<% } else { %>
+    <div>
+        <a href="/auth/github">Login with GitHub</a>
+    </div>
+    <div>
+        <a href="/auth/gitlab">Login with GitLab</a>
+    </div>
+<% } %>
 
 </body>
 </html>

@@ -16,7 +16,6 @@ const {
 const GitHubStrategy = require('passport-github').Strategy
 var GitlabStrategy = require('passport-gitlab2').Strategy
 
-
 const app = express()
 
 const githubStrategy = new GitHubStrategy({
@@ -25,6 +24,10 @@ const githubStrategy = new GitHubStrategy({
         callbackURL: `http://localhost:${HOST_PORT}/auth/github/callback`
     },
     (accessToken: any, refreshToken: any, profile: any, cb: any) => {
+
+        console.log(accessToken)
+        console.log(refreshToken)
+
         return cb(null, profile)
     }
 )
@@ -35,6 +38,9 @@ const gitlabStrategy = new GitlabStrategy({
         callbackURL: `http://localhost:${HOST_PORT}/auth/gitlab/callback`
     },
     (accessToken: any, refreshToken: any, profile: any, cb: any) => {
+        console.log(accessToken)
+        console.log(refreshToken)
+
         return cb(null, profile)
     }
 )
@@ -85,7 +91,8 @@ app.set('view engine', 'ejs')
 app.set('views', join(__dirname, 'views'))
 
 app.get('/', (req, res) => {
-    console.log(req.user)
+    // console.log(req.user)
+    // console.log(req.headers)
     res.render('login', {user: req.user})
 })
 
