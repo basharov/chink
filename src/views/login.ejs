@@ -8,10 +8,18 @@
 <body>
 <div>
     <% if (user) { %>
-        <h3><%= user.displayName %></h3>
+        <h3><%= user._json.login || user._json.username %></h3>
     <% } %>
 </div>
-<a href="/auth/github">Login with GitHub</a>
-<a href="/logout">Logout from GitHub</a>
+
+<div>
+    <a href="/auth/github">Login with GitHub</a>
+    <a href="/logout">Logout from GitHub</a>
+</div>
+<div>
+    <a href="/auth/gitlab">Login with GitLab</a>
+    <a href="/logout">Logout from GitLab</a>
+</div>
+
 </body>
 </html>

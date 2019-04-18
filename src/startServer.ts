@@ -7,10 +7,15 @@ import session = require('express-session')
 const {
     HOST_PORT = 3000,
     GITHUB_CLIENT_ID = '',
-    GITHUB_CLIENT_SECRET = ''
+    GITHUB_CLIENT_SECRET = '',
+
+    GITLAB_APP_ID = '',
+    GITLAB_APP_SECRET = ''
 } = process.env
 
 const GitHubStrategy = require('passport-github').Strategy
+var GitlabStrategy = require('passport-gitlab2').Strategy
+
 
 const app = express()
 
@@ -24,7 +29,18 @@ const githubStrategy = new GitHubStrategy({
     }
 )
 
+const gitlabStrategy = new GitlabStrategy({
+        clientID: GITLAB_APP_ID,
+        clientSecret: GITLAB_APP_SECRET,
+        callbackURL: `http://localhost:${HOST_PORT}/auth/gitlab/callback`
+    },
+    (accessToken: any, refreshToken: any, profile: any, cb: any) => {
+        return cb(null, profile)
+    }
+)
+
 passport.use(githubStrategy)
+passport.use(gitlabStrategy)
 
 passport.serializeUser((user, cb) => {
     cb(null, user)
@@ -46,6 +62,18 @@ app.get('/auth/github', passport.authenticate('github'))
 
 app.get('/auth/github/callback',
     passport.authenticate('github', {failureRedirect: '/login'}),
+    (req, res) => {
+        // Successful authentication, redirect home.
+        res.redirect('/')
+    })
+
+app.get('/auth/gitlab', passport.authenticate('gitlab',
+    {
+        scope: ['api']
+    }))
+
+app.get('/auth/gitlab/callback',
+    passport.authenticate('gitlab', {failureRedirect: '/login'}),
     (req, res) => {
         // Successful authentication, redirect home.
         res.redirect('/')
