@@ -44,30 +44,10 @@ export const applyPassportRoutes = (app: Express, passport: PassportStatic) => {
         )(req, res, next)
     })
 
-    app.get(
-        '/auth/gitlab',
-        (req, res, next) => {
-
-            const state = getState(req)
-
-            passport.authenticate('gitlab',
-                {
-                    state: JSON.stringify(state),
-                    scope: ['api']
-                },
-            )(req, res, next)
-        }
-    )
-
     app.get('/auth/github/callback',
         passport.authenticate(
             'github',
             {failureRedirect: '/'}),
         successCallback)
 
-    app.get('/auth/gitlab/callback',
-        passport.authenticate(
-            'gitlab',
-            {failureRedirect: '/'}),
-        successCallback)
 }
