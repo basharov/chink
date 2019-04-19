@@ -1,6 +1,5 @@
 import { poolClient } from './initializePool'
 import { IUser } from '../../interfaces/IUser'
-import { QueryResult } from 'pg'
 
 export const getUser = async (gitServiceName: string, userId: string): Promise<IUser | undefined> => {
 
@@ -11,6 +10,11 @@ export const getUser = async (gitServiceName: string, userId: string): Promise<I
                                     
         `,
         [gitServiceName, userId])
+
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^')
+    console.log(gitServiceName, userId)
+    console.log(usersResult.rowCount)
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^')
 
     if (usersResult && usersResult.rowCount === 1) {
         return <IUser> usersResult.rows[0]

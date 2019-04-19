@@ -4,7 +4,7 @@ if user.primary_git_service_name === 'github'
     if user.secondary_git_service_name
         p GitLab connected
     else
-        a(href='/auth/gitlab') Connect GitLab
+        a(href=`/auth/gitlab?primary_id=${user.id}`) Connect GitLab
 
 if user.primary_git_service_name === 'gitlab'
     p GitLab connected
@@ -12,4 +12,7 @@ if user.primary_git_service_name === 'gitlab'
     if user.secondary_git_service_name
         p Github connected
     else
-        a(href='/auth/github') Connect Github
+        a(href=`/auth/github?primary_id=${user.id}`) Connect Github
+
+br
+a(href='/logout') Logout

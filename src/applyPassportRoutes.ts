@@ -1,25 +1,73 @@
-import { Express } from 'express'
+import { Express, Request, Response } from 'express'
 import { PassportStatic } from 'passport'
 
+const successCallback = (req: Request, res: Response) => {
+    // Successful authentication, redirect home.
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
+    console.log(req.query.state)
+
+    const query = JSON.parse((<any> req).query.state)
+    console.log('QUERY:')
+    console.log(query)
+
+    console.log(query.query.primary_id)
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
+
+    const params = query.query.primary_id ? `?primary_id=${query.query.primary_id}` : ''
+
+    res.redirect(`/profile${params}`)
+}
+
+const getState = (req: Request) => {
+    const state: any = {
+        query: req.query
+    }
+
+    if (req.user) {
+        state.provider = req.user.provider
+        state.userId = req.user.id
+    }
+
+    return state
+}
+
 export const applyPassportRoutes = (app: Express, passport: PassportStatic) => {
-    app.get('/auth/github', passport.authenticate('github'))
+
+    app.get('/auth/github', (req, res, next) => {
+
+        const state = getState(req)
+
+        passport.authenticate('github',
+            {
+                state: JSON.stringify(state)
+            }
+        )(req, res, next)
+    })
+
+    app.get(
+        '/auth/gitlab',
+        (req, res, next) => {
+
+            const state = getState(req)
+
+            passport.authenticate('gitlab',
+                {
+                    state: JSON.stringify(state),
+                    scope: ['api']
+                },
+            )(req, res, next)
+        }
+    )
 
     app.get('/auth/github/callback',
-        passport.authenticate('github', {failureRedirect: '/'}),
-        (req, res) => {
-            // Successful authentication, redirect home.
-            res.redirect('/profile')
-        })
-
-    app.get('/auth/gitlab', passport.authenticate('gitlab',
-        {
-            scope: ['api']
-        }))
+        passport.authenticate(
+            'github',
+            {failureRedirect: '/'}),
+        successCallback)
 
     app.get('/auth/gitlab/callback',
-        passport.authenticate('gitlab', {failureRedirect: '/'}),
-        (req, res) => {
-            // Successful authentication, redirect home.
-            res.redirect('/profile')
-        })
+        passport.authenticate(
+            'gitlab',
+            {failureRedirect: '/'}),
+        successCallback)
 }
