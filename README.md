@@ -13,3 +13,6 @@ chinkdb.ca1ujtzsejpi.us-east-1.rds.amazonaws.com
 
 ### To exit from a psql client console:
     \q [enter]
+    
+### psql commands
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html

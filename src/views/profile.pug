@@ -1,0 +1,15 @@
+if user.primary_git_service_name === 'github'
+    p Github connected
+
+    if user.secondary_git_service_name
+        p GitLab connected
+    else
+        a(href='/auth/gitlab') Connect GitLab
+
+if user.primary_git_service_name === 'gitlab'
+    p GitLab connected
+
+    if user.secondary_git_service_name
+        p Github connected
+    else
+        a(href='/auth/github') Connect Github

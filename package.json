@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r dotenv/config src/startServer.ts",
+    "start": "ts-node -r dotenv/config src/startApp.ts",
     "watch": "nodemon --config ./nodemon.json"
   },
   "devDependencies": {
@@ -12,12 +12,14 @@
     "@types/express": "4.16.1",
     "@types/express-session": "1.15.12",
     "@types/node": "11.13.4",
+    "@types/node-fetch": "2.3.2",
     "@types/passport": "1.0.0",
     "@types/passport-github": "1.1.4",
     "dotenv": "7.0.0",
     "ejs": "2.6.1",
     "express": "4.16.4",
     "express-session": "1.16.1",
+    "node-fetch": "2.3.0",
     "nodemon": "1.18.11",
     "passport": "0.4.0",
     "passport-github": "1.1.0",
@@ -25,5 +27,15 @@
     "ts-node": "8.1.0",
     "tslint": "5.16.0",
     "typescript": "3.4.3"
+  },
+  "dependencies": {
+    "@types/express-handlebars": "0.0.31",
+    "@types/handlebars": "4.1.0",
+    "@types/pg": "7.4.14",
+    "@types/pug": "2.0.4",
+    "express-handlebars": "3.0.2",
+    "handlebars": "4.1.2",
+    "pg": "7.10.0",
+    "pug": "2.0.3"
   }
 }
