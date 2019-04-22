@@ -6,6 +6,10 @@ files:
     destination: /home/ec2-user/chink
 
 hooks:
+  BeforeInstall:
+    - location: deploy/install-nvm.sh
+      timeout: 600
+      runas: ec2-user
   AfterInstall:
     - location: deploy/npm-install.sh
       timeout: 600

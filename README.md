@@ -3,7 +3,7 @@
     pg_ctl -D /usr/local/var/postgres start/stop 
 
 ### Connect to EC2 instance
-ssh -i chink.pem ec2-user@ec2-34-207-242-188.compute-1.amazonaws.com
+ssh -i chink.pem ec2-user@54.198.56.3
 
 ### RDS instance
 chinkdb.ca1ujtzsejpi.us-east-1.rds.amazonaws.com
