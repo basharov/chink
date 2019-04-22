@@ -31,9 +31,9 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - deploy/*
     - dist/chink.js
     - package.json
-    - node_modules/*
     - tsconfig.json
-    - src/*
+    - deploy/**/*
+    - node_modules/**/*
+    - src/**/*
