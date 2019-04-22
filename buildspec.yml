@@ -13,14 +13,14 @@ phases:
       - sudo apt-get update
       - sudo apt-get install --yes libstdc++-4.9-dev
 
-      - echo Installing source NPM dependencies...
-      - npm install
+      - echo Installing source yarn dependencies...
+      - yarn install
 
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - npm build:client
+      - yarn build:client
   post_build:
     commands:
       - echo Build completed on `date`
