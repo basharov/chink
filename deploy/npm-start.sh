@@ -1,4 +1,4 @@
 #source /home/ec2-user/.bash_profile
 
-cd /chink
+cd /home/ec2-user
 ts-node -r dotenv/config src/server/startApp.ts
