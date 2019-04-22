@@ -1,4 +1,3 @@
 #!/bin/bash
-source /home/ec2-user/.bash_profile
 cd /home/ec2-user/chink
-sudo npm install
+sudo /home/ec2-user/.nvm/versions/node/v10.15.3/bin/npm install
