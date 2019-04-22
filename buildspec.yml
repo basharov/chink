@@ -9,9 +9,9 @@ phases:
   pre_build:
     commands:
       - echo nodegit dependencies...
-      - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-      - sudo apt-get update
-      - sudo apt-get install --yes libstdc++-4.9-dev
+      - add-apt-repository ppa:ubuntu-toolchain-r/test
+      - apt-get update
+      - apt-get install --yes libstdc++-4.9-dev
 
       - echo Installing source npm dependencies...
       - npm install
@@ -34,6 +34,6 @@ artifacts:
     - dist/chink.js
     - package.json
     - tsconfig.json
-#    - deploy/**/*
+    - deploy/**/*
 #    - node_modules/**/*
     - src/**/*

@@ -9,12 +9,12 @@ hooks:
   BeforeInstall:
     - location: deploy/install-deps.sh
       timeout: 600
-      runas: ec2-user
+#      runas: ec2-user
   AfterInstall:
     - location: deploy/set-permissions.sh
       timeout: 600
-      runas: ec2-user
+#      runas: ec2-user
   ApplicationStart:
     - location: deploy/npm-start.sh
       timeout: 120
-      runas: ec2-user
+#      runas: ec2-user
