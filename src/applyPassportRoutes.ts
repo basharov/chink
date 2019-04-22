@@ -3,15 +3,7 @@ import { PassportStatic } from 'passport'
 
 const successCallback = (req: Request, res: Response) => {
     // Successful authentication, redirect home.
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
-    console.log(req.query.state)
-
     const query = JSON.parse((<any> req).query.state)
-    console.log('QUERY:')
-    console.log(query)
-
-    console.log(query.query.primary_id)
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
 
     const params = query.query.primary_id ? `?primary_id=${query.query.primary_id}` : ''
 
@@ -39,6 +31,7 @@ export const applyPassportRoutes = (app: Express, passport: PassportStatic) => {
 
         passport.authenticate('github',
             {
+                scope: ['repo'],
                 state: JSON.stringify(state)
             }
         )(req, res, next)

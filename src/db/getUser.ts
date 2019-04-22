@@ -7,10 +7,6 @@ export const getUser = async (userId: string): Promise<IUser | undefined> => {
         'SELECT * from users WHERE github_user_id = $1',
         [userId])
 
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^')
-    console.log(usersResult.rowCount)
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^')
-
     if (usersResult && usersResult.rowCount === 1) {
         return <IUser> usersResult.rows[0]
     }

@@ -8,16 +8,16 @@ export const updateUserProfile = async (profile: any) => {
     const user = await getUser(profile.id)
 
     if (user) {
-        console.log('FOUND THIS')
-        console.log(user.id)
-        console.log('==========')
-
         try {
-            const queryString = 'UPDATE users SET github_profile = $2 WHERE github_user_id = $1'
+            const queryString = 'UPDATE users SET github_profile = $2 WHERE github_user_id = $1 RETURNING *'
 
             const values = [profile.id, profile]
 
             const result = await poolClient.query(queryString, values)
+
+            if (result.rowCount === 1) {
+                return result.rows[0]
+            }
 
         } catch (err) {
             console.trace((err))
@@ -30,12 +30,16 @@ export const updateUserProfile = async (profile: any) => {
         try {
             const queryString =
                 `
-                INSERT INTO users(github_user_id, github_profile) VALUES($1, $2)
+                INSERT INTO users(github_user_id, github_profile) VALUES($1, $2)  RETURNING *
                 `
 
             const values = [profile.id, profile]
 
             const result = await poolClient.query(queryString, values)
+
+            if (result.rowCount === 1) {
+                return result.rows[0]
+            }
 
         } catch (err) {
             console.trace((err))

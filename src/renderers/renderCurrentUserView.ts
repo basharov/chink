@@ -1,10 +1,13 @@
 import { Request, Response } from 'express'
 import { getUser } from '../db/getUser'
+import { loadRepos } from '../loadRepos'
 
 export const renderCurrentUserView = async (req: Request, res: Response) => {
 
-    const user = await getUser(req.user.id)
+    const user = await getUser(req.user.profile.github_user_id)
 
-    res.render('profile', {user})
+    const repos = await loadRepos(req.user.accessToken)
+
+    res.render('profile', {user, repos})
 
 }

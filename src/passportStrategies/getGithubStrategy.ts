@@ -1,6 +1,5 @@
 import { updateUserProfile } from '../db/updateUserProfile'
-
-const GetGithubStrategy = require('passport-github').Strategy
+import { Strategy } from 'passport-github2'
 
 const {
     HOST_PORT = 3000,
@@ -14,14 +13,16 @@ const githubStrategyParams = {
     callbackURL: `http://localhost:${HOST_PORT}/auth/github/callback`
 }
 
-const githubStrategyCallback = async (accessToken: string, refreshToken: string, profile: any, cb: any) => {
+const githubStrategyCallback = async (accessToken: string, refreshToken: string, githubProfile: any, done: any) => {
 
-    await updateUserProfile(profile)
+    console.log(`accessToken: ${accessToken}`)
 
-    return cb(null, profile)
+    const profile = await updateUserProfile(githubProfile)
+
+    return done(null, {profile, accessToken, refreshToken})
 }
 
 export const getGithubStrategy = () => {
-    return new GetGithubStrategy(githubStrategyParams, githubStrategyCallback)
+    return new Strategy(githubStrategyParams, githubStrategyCallback)
 
 }
