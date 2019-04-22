@@ -6,10 +6,10 @@ files:
     destination: /home/ec2-user/chink
 
 hooks:
-  BeforeInstall:
-    - location: deploy/install-deps.sh
-      timeout: 600
-      runas: ec2-user
+#  BeforeInstall:
+#    - location: deploy/install-deps.sh
+#      timeout: 600
+#      runas: ec2-user
   AfterInstall:
     - location: deploy/set-permissions.sh
       timeout: 600
