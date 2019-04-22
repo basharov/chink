@@ -8,13 +8,14 @@ phases:
   #      - npm install
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install
-
       - echo nodegit dependencies...
       - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
       - sudo apt-get update
       - sudo apt-get install libstdc++-4.9-dev
+
+      - echo Installing source NPM dependencies...
+      - npm install
+
   build:
     commands:
       - echo Build started on `date`
