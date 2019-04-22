@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ec2-user/chink
+
+hooks:
+  AfterInstall:
+    - location: deploy/npm-install.sh
+      timeout: 600
+      runas: ec2-user
+  ApplicationStart:
+    - location: deploy/npm-start.sh
+      timeout: 120
+      runas: ec2-user
