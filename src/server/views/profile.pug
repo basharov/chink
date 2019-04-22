@@ -1,0 +1,16 @@
+extends layouts/main
+
+block content
+    p User: #{user.github_user_id}
+    p User Profile: #{user.github_profile.username}
+    //a(href="https://github.com/" + user.github_profile.username) Github Link
+
+    br
+
+    select
+        each repo in repos
+            option(value=repo.full_name) #{repo.full_name}
+    button#clone-repo-button Clone repo
+
+    br
+    a(href='/logout') Logout

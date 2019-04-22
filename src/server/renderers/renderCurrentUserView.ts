@@ -9,8 +9,6 @@ export const renderCurrentUserView = async (req: Request, res: Response) => {
 
     const repos = await loadRepos(req.user.accessToken)
 
-    cloneRepo(req.user.accessToken, req.user.profile.github_profile.username, 'testrepo_private')
-
     res.render('profile', {user, repos})
 
 }
