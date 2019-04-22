@@ -32,5 +32,6 @@ artifacts:
   files:
     - dist/chink.js
     - package.json
-    - node_modules/async/*
-    - node_modules/lodash/*
+    - node_modules/*
+    - tsconfig.json
+    - src/*

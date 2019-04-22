@@ -1,5 +1,5 @@
 import { poolClient } from './initializePool'
-import { IUser } from '../../../interfaces/IUser'
+import { IUser } from '../../interfaces/IUser'
 
 export const getUser = async (userId: string): Promise<IUser | undefined> => {
 
