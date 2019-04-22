@@ -1,4 +1,4 @@
-source /home/ec2-user/.bash_profile
+#source /home/ec2-user/.bash_profile
 
 #sudo chown -R ec2-user:ec2-user /home/ec2-user/chink
 
