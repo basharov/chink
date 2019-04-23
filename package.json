@@ -33,10 +33,13 @@
     "webpack-cli": "3.3.1"
   },
   "dependencies": {
+    "@types/aws-sdk": "2.7.0",
     "@types/nodegit": "0.24.6",
     "@types/pg": "7.4.14",
     "@types/pug": "2.0.4",
     "@types/rimraf": "2.0.2",
+    "aws-sdk": "2.441.0",
+    "lawgs": "1.0.4",
     "nodegit": "0.24.2",
     "pg": "7.10.0",
     "pug": "2.0.3",

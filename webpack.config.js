@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
     entry: './src/client/chink.ts',
     devtool: 'inline-source-map',
+    mode: 'production',
     module: {
         rules: [
             {

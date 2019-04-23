@@ -1,4 +1,5 @@
 import { Pool, PoolClient } from 'pg'
+import { logger } from '../startApp'
 
 const {
     PG_HOST = 'localhost',
@@ -23,12 +24,15 @@ const initializePool = async (): Promise<PoolClient> => {
 
     pool.on('error', (err: Error, cl: PoolClient) => {
         console.error('Unexpected error on idle client', err)
+        logger.log('db', {error: err})
         process.exit(-1)
     })
 
     const client = await pool.connect()
 
     console.log('Connected to Database')
+
+    logger.log('db', 'connected')
 
     return client
 
