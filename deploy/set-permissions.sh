@@ -7,7 +7,7 @@ sudo chown -R ec2-user:ec2-user /home/ec2-user/chink
 #nvm install 10.15.3
 
 cd /home/ec2-user/chink
-rm -rf node_modules
+#rm -rf node_modules
 npm install
 
 # set files to 644 [except *.pl *.cgi *.sh]
