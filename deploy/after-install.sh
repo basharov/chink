@@ -1,4 +1,4 @@
-#!/bin/bash
+source /home/ec2-user/.bash_profile
 # Set ownership for all folders
 sudo chown -R ec2-user:ec2-user /home/ec2-user/chink
 
