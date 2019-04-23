@@ -6,15 +6,15 @@ files:
     destination: /home/ec2-user/chink
 
 hooks:
-#  BeforeInstall:
-#    - location: deploy/install-deps.sh
-#      timeout: 600
-#      runas: ec2-user
+  BeforeInstall:
+    - location: deploy/application-stop.sh
+      timeout: 600
+      runas: ec2-user
   AfterInstall:
-    - location: deploy/set-permissions.sh
+    - location: deploy/after-install.sh
       timeout: 600
       runas: ec2-user
   ApplicationStart:
-    - location: deploy/npm-start.sh
+    - location: deploy/application-start.sh
       timeout: 120
       runas: ec2-user
