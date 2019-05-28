@@ -1,11 +1,14 @@
 import { startExpressServer } from './startExpressServer'
-import { initializeCloudwatch } from './initializeCloudwatch'
-
-export const logger = initializeCloudwatch()
+import { loadStoreParameters } from './loadStoreParameters'
+import { initPgPool } from './db/initializePool'
 
 const startApp = async () => {
 
-    const express = startExpressServer()
+    await loadStoreParameters()
+
+    await initPgPool()
+
+    startExpressServer()
 }
 
 startApp()

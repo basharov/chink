@@ -1,7 +1,7 @@
 import { Express, Response } from 'express'
 import { renderCurrentUserView } from './renderers/renderCurrentUserView'
 
-export const applyRoutes = (app: Express) => {
+export const applyRoutes = (app: Express): void => {
 
     app.get('/', (req, res) => {
         res.render('home', {user: req.user})

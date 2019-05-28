@@ -1,8 +1,6 @@
 const fetchRepo = () => {
     fetch('/api/repo/clone')
-        .then((response) => {
-            return response.json()
-        })
+        .then((response) => response.json())
         .then((myJson) => {
             console.log(JSON.stringify(myJson))
         })

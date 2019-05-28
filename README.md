@@ -16,3 +16,7 @@ chinkdb.ca1ujtzsejpi.us-east-1.rds.amazonaws.com
     
 ### psql commands
 https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+
+### fix for libcurl-gnutls error
+https://github.com/getinsomnia/insomnia/issues/742
+`sudo ln -s /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4`
